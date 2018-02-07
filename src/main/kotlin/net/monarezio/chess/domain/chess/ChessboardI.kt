@@ -1,7 +1,7 @@
 package net.monarezio.chess.domain.chess
 
 import net.monarezio.chess.domain.chess.models.Coordinate
-import net.monarezio.chess.domain.chess.models.Figure
+import net.monarezio.chess.domain.chess.models.figures.Figure
 
 interface ChessboardI {
 

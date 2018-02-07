@@ -1,8 +1,7 @@
 package net.monarezio.chess.domain.chess
 
 import net.monarezio.chess.domain.chess.models.Coordinate
-import net.monarezio.chess.domain.chess.models.Figure
-import net.monarezio.chess.domain.chess.models.FigureType
+import net.monarezio.chess.domain.chess.models.figures.*
 
 class Chessboard: ChessboardI {
 
@@ -11,28 +10,28 @@ class Chessboard: ChessboardI {
             .toTypedArray()
 
     init {
-        fields[0][0] = Figure.createBlack(FigureType.ROOK)
-        fields[7][0] = Figure.createBlack(FigureType.ROOK)
-        fields[1][0] = Figure.createBlack(FigureType.KNIGHT)
-        fields[6][0] = Figure.createBlack(FigureType.KNIGHT)
-        fields[2][0] = Figure.createBlack(FigureType.BISHOP)
-        fields[5][0] = Figure.createBlack(FigureType.BISHOP)
-        fields[3][0] = Figure.createBlack(FigureType.QUEEN)
-        fields[4][0] = Figure.createBlack(FigureType.KING)
+        fields[0][0] = Rook(true)
+        fields[7][0] = Rook(true)
+        fields[1][0] = Knight(true)
+        fields[6][0] = Knight(true)
+        fields[2][0] = Knight(true)
+        fields[5][0] = Bishop(true)
+        fields[3][0] = Bishop(true)
+        fields[4][0] = King(true)
         for(i in 0..7) {
-            fields[i][1] = Figure.createBlack(FigureType.PAWN)
+            fields[i][1] = Pawn(true)
         }
 
-        fields[0][7] = Figure.createWhite(FigureType.ROOK)
-        fields[7][7] = Figure.createWhite(FigureType.ROOK)
-        fields[1][7] = Figure.createWhite(FigureType.KNIGHT)
-        fields[6][7] = Figure.createWhite(FigureType.KNIGHT)
-        fields[2][7] = Figure.createWhite(FigureType.BISHOP)
-        fields[5][7] = Figure.createWhite(FigureType.BISHOP)
-        fields[3][7] = Figure.createWhite(FigureType.QUEEN)
-        fields[4][7] = Figure.createWhite(FigureType.KING)
+        fields[0][7] = Rook(false)
+        fields[7][7] = Rook(false)
+        fields[1][7] = Knight(false)
+        fields[6][7] = Knight(false)
+        fields[2][7] = Bishop(false)
+        fields[5][7] = Bishop(false)
+        fields[3][7] = Queen(false)
+        fields[4][7] = King(false)
         for(i in 0..7) {
-            fields[i][6] = Figure.createWhite(FigureType.PAWN)
+            fields[i][6] = Pawn(false)
         }
     }
 
@@ -40,8 +39,6 @@ class Chessboard: ChessboardI {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun getField(x: Int, y: Int): Figure? {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun getField(x: Int, y: Int): Figure? = fields[x][y]
 
 }
