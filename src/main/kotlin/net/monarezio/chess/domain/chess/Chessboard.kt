@@ -14,9 +14,9 @@ class Chessboard: ChessboardI {
         fields[7][0] = Rook(true)
         fields[1][0] = Knight(true)
         fields[6][0] = Knight(true)
-        fields[2][0] = Knight(true)
+        fields[2][0] = Bishop(true)
         fields[5][0] = Bishop(true)
-        fields[3][0] = Bishop(true)
+        fields[3][0] = Queen(true)
         fields[4][0] = King(true)
         for(i in 0..7) {
             fields[i][1] = Pawn(true)
@@ -36,9 +36,11 @@ class Chessboard: ChessboardI {
     }
 
     override fun getNextMoves(x: Int, y: Int): List<Coordinate> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return listOf(Coordinate(5, 5))
     }
 
     override fun getField(x: Int, y: Int): Figure? = fields[x][y]
+
+    override fun getFields(): List<List<Figure?>> = fields.map { it.toList() }.toList()
 
 }

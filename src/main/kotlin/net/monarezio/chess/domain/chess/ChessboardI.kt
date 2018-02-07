@@ -9,4 +9,6 @@ interface ChessboardI {
 
     fun getField(x: Int, y: Int): Figure?
 
+    fun getFields(): List<List<Figure?>>
+
 }

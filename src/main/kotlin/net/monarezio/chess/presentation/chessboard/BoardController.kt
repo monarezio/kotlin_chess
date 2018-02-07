@@ -3,9 +3,10 @@ package net.monarezio.chess.presentation.chessboard
 import net.monarezio.chess.domain.chess.Chessboard
 import net.monarezio.chess.domain.chess.ChessboardI
 import net.monarezio.chess.domain.chess.models.figures.*
+import net.monarezio.chess.presentation.chessboard.custom.OnClickListener
 import tornadofx.*
 
-class ChessboardController: Controller() {
+class BoardController : Controller(), OnClickListener {
 
     private val chessboard: ChessboardI = Chessboard()
 
@@ -26,4 +27,9 @@ class ChessboardController: Controller() {
         return if(figure is Figure && figure.black) tmp + 6 else tmp
     }
 
+    fun getFields() = chessboard.getFields().mapIndexed { i, list -> list.mapIndexed { j, _ -> getFigure(i, j) } }
+
+    override fun onClick(x: Int, y: Int) {
+        println("${x} ${y}")
+    }
 }

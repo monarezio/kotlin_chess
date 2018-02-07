@@ -1,14 +1,25 @@
-package net.monarezio.chess.presentation.chessboard
+package net.monarezio.chess.presentation.chessboard.custom
 
+import javafx.geometry.Pos
 import javafx.scene.layout.BorderStrokeStyle
 import tornadofx.*
 
-class ChessboardView : View("Chessboard") {
+class ChessboardView(fields: List<List<Char>>) : View() {
 
-    val controller: ChessboardController by inject()
+    override val root = pane {}
 
-    override val root = pane {
-        hbox {
+    var onClickListener: OnClickListener? = null
+
+    var fields: List<List<Char>> = fields
+        set(value) { render() }
+
+    init { render() }
+
+    private fun render() {
+
+        root.children.removeAll() //Remove every child
+
+        root.add(hbox {
             style {
                 borderColor += box(c("#000000"))
                 borderStyle += BorderStrokeStyle.SOLID
@@ -18,17 +29,14 @@ class ChessboardView : View("Chessboard") {
             for(i in 0..7) {
                 vbox {
                     for(j in 0..7) {
-                        pane {
+                        label {
+                            text = fields[i][j].toString()
 
-                            label {
-                                text = controller.getFigure(i,j).toString()
-
-                                style {
-                                    fontSize = 52.px
-                                }
-                            }
+                            alignment = Pos.CENTER
 
                             style {
+
+                                fontSize = 52.px
 
                                 minWidth = 64.px
                                 minHeight = 64.px
@@ -38,10 +46,12 @@ class ChessboardView : View("Chessboard") {
                                 else
                                     backgroundColor += c("#ecf0f1")
                             }
+
+                            setOnMousePressed { onClickListener?.onClick(i, j) }
                         }
                     }
                 }
             }
-        }
+        })
     }
 }
