@@ -1,13 +1,14 @@
 package net.monarezio.chess.presentation.chessboard
 
 import net.monarezio.chess.domain.chess.Chessboard
+import net.monarezio.chess.domain.chess.ChessboardI
 import net.monarezio.chess.domain.chess.models.Figure
 import net.monarezio.chess.domain.chess.models.FigureType
 import tornadofx.*
 
 class ChessboardController: Controller() {
 
-    private val chessboard = Chessboard()
+    private val chessboard: ChessboardI = Chessboard()
 
     fun getFigure(x: Int, y: Int): Char {
         val figure = chessboard.fields[x][y]
